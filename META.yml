@@ -1,0 +1,11 @@
+--- 
+abstract: a simple finger server
+author: 
+  - Ricardo SIGNES <rjbs@cpan.org>
+generated_by: Dist::Zilla::Plugin::MetaYaml version 0.005
+license: perl
+name: Net-Finger-Server
+requires: 
+  Net::Server: 0
+  Sub::Exporter: 0
+version: 0.001
