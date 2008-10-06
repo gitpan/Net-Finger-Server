@@ -7,5 +7,6 @@ license: perl
 name: Net-Finger-Server
 requires: 
   Net::Server: 0
+  Package::Generator: 0
   Sub::Exporter: 0
-version: 0.001
+version: 0.002
