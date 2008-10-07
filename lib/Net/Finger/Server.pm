@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 package Net::Finger::Server;
-our $VERSION = '0.002';
+our $VERSION = '0.003';
 
 # ABSTRACT: a simple finger server
 
@@ -14,10 +14,13 @@ my %already;
 sub _run_server {
   my ($class, $value) = @_;
   $value ||= {};
-  $value->{port} ||= 79;
+
+  my %config = %$value;
+
+  $config{port} ||= 79;
 
   my $pkg = $class;
-  if (my $isa = $value->{isa}) {
+  if (my $isa = delete $config{isa}) {
     eval "require $isa; 1" or die;
     $pkg = $already{ $class, $isa } ||= Package::Generator->new_package({
       base => $class,
@@ -25,7 +28,8 @@ sub _run_server {
     });
   }
 
-  $pkg->run(port => $value->{port});
+  my $server = $pkg->new(%config);
+  $server->run;
 }
 
 
@@ -115,7 +119,7 @@ Net::Finger::Server - a simple finger server
 
 =head1 VERSION
 
-version 0.002
+version 0.003
 
 =head1 SYNOPSIS
 
