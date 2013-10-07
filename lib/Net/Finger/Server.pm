@@ -1,8 +1,9 @@
 use strict;
 use warnings;
 package Net::Finger::Server;
-our $VERSION = '0.003';
-
+{
+  $Net::Finger::Server::VERSION = '0.004';
+}
 # ABSTRACT: a simple finger server
 
 use Package::Generator;
@@ -119,18 +120,18 @@ Net::Finger::Server - a simple finger server
 
 =head1 VERSION
 
-version 0.003
+version 0.004
 
 =head1 SYNOPSIS
 
-    use Net::Finger::Server -run;
+  use Net::Finger::Server -run;
 
 That's it!  You might need to run with privs, since by default it will bind to
 port 79.
 
 You can also:
 
-    use Net::Finger::Server -run => { port => 1179 };
+  use Net::Finger::Server -run => { port => 1179 };
 
 ...if you want.
 
@@ -168,7 +169,7 @@ This method is called when a C<{C}> query is received -- in other words, an
 empty query, used to request a listing of all users.  It is passed a hashref of
 arguments, of where there is only one right now:
 
-    verbose - boolean; did client request a verbose reply?
+  verbose - boolean; did client request a verbose reply?
 
 The default reply is a rejection notice.
 
@@ -178,7 +179,7 @@ This method is called when a C<{Q1}> query is received -- in other words, a
 request for information about a named user.  It is passed the username and a
 hashref of arguments, of where there is only one right now:
 
-    verbose - boolean; did client request a verbose reply?
+  verbose - boolean; did client request a verbose reply?
 
 The default reply is a rejection notice.
 
@@ -188,9 +189,9 @@ This method is called when a C<{Q2}> query is received -- in other words, a
 request for the server to relay a request to another host.  It is passed a
 hashref of arguments:
 
-    username - the user named in the query (if any)
-    hosts    - an arrayref of the hosts in the query, left to right
-    verbose  - boolean; did client request a verbose reply?
+  username - the user named in the query (if any)
+  hosts    - an arrayref of the hosts in the query, left to right
+  verbose  - boolean; did client request a verbose reply?
 
 The default reply is a rejection notice.
 
@@ -201,15 +202,13 @@ query string.
 
 =head1 AUTHOR
 
-  Ricardo SIGNES <rjbs@cpan.org>
+Ricardo SIGNES <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2008 by Ricardo SIGNES.
+This software is copyright (c) 2013 by Ricardo SIGNES.
 
 This is free software; you can redistribute it and/or modify it under
-the same terms as perl itself.
+the same terms as the Perl 5 programming language system itself.
 
-=cut 
-
-
+=cut
